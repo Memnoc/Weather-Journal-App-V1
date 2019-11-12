@@ -1,4 +1,4 @@
-let appId = '&APPID=3a834efe29e097a21b0d01f86439e5ee';
+let appId = '&APPID=';
 let units = '&units=metric';
 let searchMethod = 'zip=';
 let searchTerm;
