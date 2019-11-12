@@ -7,7 +7,7 @@ const express = require('express');
 /* Start up an instance of app */
 const app = express();
 
-/* Dependencies */
+/* Dependenciesz */
 const bodyParser = require('body-parser')
     /* Middleware*/
 app.use(bodyParser.urlencoded({ extended: false }));
