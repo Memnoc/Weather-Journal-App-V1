@@ -26,7 +26,6 @@ function performAction(e) {
         .then(function(data) {
             postData('/addWeather', { temperature: data.main.temp, humidity: data.main.humidity, feelings: feelings, date: date })
             console.log(date);
-
             // Update the UI with data
             updateUI();
         });
@@ -35,17 +34,12 @@ function performAction(e) {
 
 // GET call
 const getAnimal = async(baseURL, searchMethod, searchTerm, appId, units) => {
-
     const res = await fetch(baseURL + searchMethod + searchTerm + appId + units)
     try {
-
         const data = await res.json();
-        console.log(data)
-            // console.log(data.main.temp)
         return data;
     } catch (error) {
         console.log("error", error);
-        // appropriately handle the error
     }
 }
 
@@ -74,6 +68,7 @@ const postData = async(url = '', data = {}) => {
     }
 }
 
+// Update the UI with the information extracted from the API and the HTML elements
 const updateUI = async() => {
     const request = await fetch(fetchURL);
     try {
@@ -82,7 +77,6 @@ const updateUI = async() => {
         temperatureElement.innerHTML = "Temperature level at: " + allData[0].temperature + " C˚";
         document.getElementById('feelingz').innerHTML = "Today's feeling: " + allData[0].feelings;
         currentDate.innerHTML = "Today's date: " + allData[0].date;
-
 
     } catch (error) {
         console.log("error", error);
