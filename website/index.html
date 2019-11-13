@@ -17,6 +17,12 @@
             <label for="zip">Enter Zipcode here</label>
             <input type="text" id="zip" placeholder="enter zip code here">
         </div>
+        <div class="entry-date">
+            <label for="today">
+              Today's date is:
+            </label>
+            <input id="today" placeholder="today's date" readonly type="text">
+        </div>
         <div class="holder feel">
             <label for="feelings">How are you feeling today?</label>
             <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
@@ -25,6 +31,7 @@
         <div class="holder entry">
             <div class="title">Most Recent Entry</div>
             <div id="entryHolder">
+                <div id="datez"></div>
                 <div id="humidity"></div>
                 <div id="temperature"></div>
                 <div id="feelingz"></div>

@@ -5,6 +5,7 @@ let searchTerm;
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?';
 let temperatureElement = document.getElementById('temperature');
 let humidityLevel = document.getElementById('humidity');
+let currentDate = document.getElementById('datez');
 const fetchURL = "http://localhost:3000/all";
 
 document.getElementById('generate').addEventListener('click', performAction);
@@ -15,11 +16,16 @@ function performAction(e) {
     const newSearch = document.getElementById('zip').value;
     // Get the feeling value
     const feelings = document.getElementById('feelings').value;
+    // Get the date value
+    // Create a new date instance
+    let d = new Date();
+    let date = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+    currentDate.value = date;
 
     getAnimal(baseURL, searchMethod, newSearch, appId, units)
         .then(function(data) {
-            console.log(data);
-            postData('/addWeather', { temperature: data.main.temp, humidity: data.main.humidity, feelings: feelings })
+            postData('/addWeather', { temperature: data.main.temp, humidity: data.main.humidity, feelings: feelings, date: date })
+            console.log(date);
 
             // Update the UI with data
             updateUI();
@@ -72,20 +78,13 @@ const updateUI = async() => {
     const request = await fetch(fetchURL);
     try {
         const allData = await request.json();
-        temperatureElement.innerHTML = allData[0].humidity;
-        humidityLevel.innerHTML = allData[0].temperature;
-        document.getElementById('feelingz').innerHTML = allData[0].feelings;
+        humidityLevel.innerHTML = "Humidity level at: " + allData[0].humidity;
+        temperatureElement.innerHTML = "Temperature level at: " + allData[0].temperature + " C˚";
+        document.getElementById('feelingz').innerHTML = "Today's feeling: " + allData[0].feelings;
+        currentDate.innerHTML = "Today's date: " + allData[0].date;
+
 
     } catch (error) {
         console.log("error", error);
     }
 }
-
-// postData('/addWeather', { temperature: data.temp, humidity: data.humidity, fact: favFact });
-// postData('/addMovie', { movie: ' the shore ', score: 2 });
-// postData('/addMovie', { movie: ' the shore ', score: 2 });
-
-// Just another random route for testing
-// postData('/add', { movie: ' Armageddon ', score: 5 });
-// postData('/add', { movie: ' Jaws ', score: 2 });
-// postData('/add', { movie: ' The Shore ', score: 2 });

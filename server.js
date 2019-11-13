@@ -7,7 +7,7 @@ const express = require('express');
 /* Start up an instance of app */
 const app = express();
 
-/* Dependenciesz */
+/* Dependencies */
 const bodyParser = require('body-parser')
     /* Middleware*/
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,8 +52,9 @@ app.post('/addWeather', addWeather);
 function addWeather(request, response) {
     console.log(request.body);
     newEntry = {
-        temperature: request.body.temperature,
+        date: request.body.date,
         humidity: request.body.humidity,
+        temperature: request.body.temperature,
         feelings: request.body.feelings
     }
 
