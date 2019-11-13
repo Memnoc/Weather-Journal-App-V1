@@ -1,4 +1,4 @@
-let appId = '&APPID=';
+const APP_ID = '&APPID=3a834efe29e097a21b0d01f86439e5ee';
 let units = '&units=metric';
 let searchMethod = 'zip=';
 let searchTerm;
@@ -22,19 +22,22 @@ function performAction(e) {
     let date = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
     currentDate.value = date;
 
-    getAnimal(baseURL, searchMethod, newSearch, appId, units)
+    getAnimal(baseURL, searchMethod, newSearch, APP_ID, units)
         .then(function(data) {
-            postData('/addWeather', { temperature: data.main.temp, humidity: data.main.humidity, feelings: feelings, date: date })
-            console.log(date);
-            // Update the UI with data
-            updateUI();
+            try {
+                postData('/addWeather', { temperature: data.main.temp, humidity: data.main.humidity, feelings: feelings, date: date })
+                    // Update the UI with data
+                updateUI();
+            } catch (error) {
+                console.log("error", error);
+            }
         });
 
 };
 
 // GET call
-const getAnimal = async(baseURL, searchMethod, searchTerm, appId, units) => {
-    const res = await fetch(baseURL + searchMethod + searchTerm + appId + units)
+const getAnimal = async(baseURL, searchMethod, searchTerm, APP_ID, units) => {
+    const res = await fetch(baseURL + searchMethod + searchTerm + APP_ID + units)
     try {
         const data = await res.json();
         return data;
@@ -61,7 +64,6 @@ const postData = async(url = '', data = {}) => {
 
     try {
         const newData = await response.json();
-        console.log(newData);
         return newData;
     } catch (error) {
         console.log("error", error);
