@@ -50,7 +50,6 @@ const getWeather = async(baseURL, searchMethod, searchTerm, APP_ID, units) => {
 // POST call
 // Function to fetch data asynchronously
 const postData = async(url = '', data = {}) => {
-    console.log(data);
     // this is the POST route
     const response = await fetch(url, {
         method: 'POST',
@@ -75,10 +74,10 @@ const updateUI = async() => {
     const request = await fetch(fetchURL);
     try {
         const allData = await request.json();
-        humidityLevel.innerHTML = "Humidity level at: " + allData[0].humidity;
-        temperatureElement.innerHTML = "Temperature level at: " + allData[0].temperature + " C˚";
-        document.getElementById('content').innerHTML = "Today's feeling: " + allData[0].feelings;
-        currentDate.innerHTML = "Today's date: " + allData[0].date;
+        humidityLevel.innerHTML = "Humidity level at: " + allData.humidity;
+        temperatureElement.innerHTML = "Temperature level at: " + allData.temperature + " C˚";
+        document.getElementById('content').innerHTML = "Today's feeling: " + allData.feelings;
+        currentDate.innerHTML = "Today's date: " + allData.date;
 
     } catch (error) {
         console.log("error", error);

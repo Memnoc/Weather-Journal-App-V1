@@ -28,14 +28,14 @@ function listening() {
 
 
 // First, store the data
-const data = [];
+// const data = [];
 
 // GET route
 app.get('/all', getData)
 
 // Callback to the get route
 function getData(request, response) {
-    response.send(data)
+    response.send(projectData)
 }
 
 
@@ -44,14 +44,12 @@ app.post('/addWeather', addWeather);
 
 // Callback to the route to receive the client data and store it into an object entry
 function addWeather(request, response) {
-    console.log(request.body);
-    newEntry = {
-        date: request.body.date,
-        humidity: request.body.humidity,
-        temperature: request.body.temperature,
-        feelings: request.body.feelings
-    }
+    let responseData = request.body;
 
-    data.push(newEntry)
-    response.send(data)
+    projectData.temperature = request.body.temperature;
+    projectData.date = request.body.date;
+    projectData.feelings = request.body.feelings;
+    projectData.humidity = request.body.humidity;
+
+    response.send(projectData)
 }
