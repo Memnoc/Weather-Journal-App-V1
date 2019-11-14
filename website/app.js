@@ -3,9 +3,9 @@ let units = '&units=metric';
 let searchMethod = 'zip=';
 let searchTerm;
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?';
-let temperatureElement = document.getElementById('temperature');
+let temperatureElement = document.getElementById('temp');
 let humidityLevel = document.getElementById('humidity');
-let currentDate = document.getElementById('datez');
+let currentDate = document.getElementById('date');
 const fetchURL = "http://localhost:3000/all";
 
 document.getElementById('generate').addEventListener('click', performAction);
@@ -77,7 +77,7 @@ const updateUI = async() => {
         const allData = await request.json();
         humidityLevel.innerHTML = "Humidity level at: " + allData[0].humidity;
         temperatureElement.innerHTML = "Temperature level at: " + allData[0].temperature + " C˚";
-        document.getElementById('feelingz').innerHTML = "Today's feeling: " + allData[0].feelings;
+        document.getElementById('content').innerHTML = "Today's feeling: " + allData[0].feelings;
         currentDate.innerHTML = "Today's date: " + allData[0].date;
 
     } catch (error) {

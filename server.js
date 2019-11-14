@@ -1,5 +1,5 @@
 /* Empty JS object to act as endpoint for all routes */
-projectData = {};
+let projectData = {};
 
 /* Express to run server and routes */
 const express = require('express');
@@ -35,7 +35,6 @@ app.get('/all', getData)
 // Callback to the get route
 function getData(request, response) {
     response.send(data)
-    console.log(data);
 }
 
 
@@ -55,5 +54,4 @@ function addWeather(request, response) {
 
     data.push(newEntry)
     response.send(data)
-    console.log(data)
 }
