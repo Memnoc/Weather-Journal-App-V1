@@ -10,7 +10,7 @@ const fetchURL = "http://localhost:3000/all";
 
 document.getElementById('generate').addEventListener('click', performAction);
 
-// Capture the search method and update getAnimal() with it
+// Capture the search method and update getWeather() with it
 function performAction(e) {
     // Get the ZIP value
     const newSearch = document.getElementById('zip').value;
@@ -22,7 +22,7 @@ function performAction(e) {
     let date = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
     currentDate.value = date;
 
-    getAnimal(baseURL, searchMethod, newSearch, APP_ID, units)
+    getWeather(baseURL, searchMethod, newSearch, APP_ID, units)
         .then(function(data) {
             try {
                 postData('/addWeather', { temperature: data.main.temp, humidity: data.main.humidity, feelings: feelings, date: date })
@@ -36,7 +36,7 @@ function performAction(e) {
 };
 
 // GET call
-const getAnimal = async(baseURL, searchMethod, searchTerm, APP_ID, units) => {
+const getWeather = async(baseURL, searchMethod, searchTerm, APP_ID, units) => {
     const res = await fetch(baseURL + searchMethod + searchTerm + APP_ID + units)
     try {
         const data = await res.json();

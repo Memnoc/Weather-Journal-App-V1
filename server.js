@@ -26,6 +26,7 @@ function listening() {
     console.log(`running on localhost: ${port}`);
 };
 
+
 // First, store the data
 const data = [];
 
@@ -40,7 +41,6 @@ function getData(request, response) {
 
 // POST route
 app.post('/addWeather', addWeather);
-
 
 // Callback to the route to receive the client data and store it into an object entry
 function addWeather(request, response) {
