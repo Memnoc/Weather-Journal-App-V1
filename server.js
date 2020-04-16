@@ -52,4 +52,5 @@ function addWeather(request, response) {
     projectData.humidity = request.body.humidity;
 
     response.send(projectData)
+    console.log(projectData)
 }

@@ -40,6 +40,7 @@ const getWeather = async(baseURL, searchMethod, searchTerm, APP_ID, units) => {
     const res = await fetch(baseURL + searchMethod + searchTerm + APP_ID + units)
     try {
         const data = await res.json();
+        console.log(data);
         return data;
     } catch (error) {
         console.log("error", error);
@@ -74,6 +75,7 @@ const updateUI = async() => {
     const request = await fetch(fetchURL);
     try {
         const allData = await request.json();
+        console.log(allData);
         humidityLevel.innerHTML = "Humidity level at: " + allData.humidity;
         temperatureElement.innerHTML = "Temperature level at: " + allData.temperature + " C˚";
         document.getElementById('content').innerHTML = "Today's feeling: " + allData.feelings;
