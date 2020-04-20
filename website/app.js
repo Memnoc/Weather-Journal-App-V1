@@ -1,4 +1,4 @@
-const APP_ID = '&APPID=3a834efe29e097a21b0d01f86439e5ee';
+const APP_ID = '&APPID=';
 let units = '&units=metric';
 let searchMethod = 'zip=';
 let searchTerm;
